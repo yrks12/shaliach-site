@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Shaliach is no longer installed from this script.
+printf '%s\n' 'Shaliach is now installed by our team, for businesses only.' 'Book a demo: support@shaliach.me (subject: Book a demo) or https://shaliach.me/'
+exit 1

@@ -1,0 +1,35 @@
+# Shaliach
+
+> Shaliach is a team of AI agents, each running the official Claude Code CLI, that runs on your own Mac or server and is run from your phone. You text one agent, Atlas, the chief of staff. Atlas hires the agents a job needs, gives each one its own browser and terminal, and asks you before anything risky happens. A paid product, for businesses only: our team installs it for you. Independent project, not affiliated with or endorsed by Anthropic.
+
+Can it run a company? Yes: Shaliach runs the day-to-day operations of 4 real businesses today (Chairside Reels, a holiday-villa video offer, five YouTube music channels, Yossi-Yair Edits), with the owner tapping approve on his phone for payments, publishing and outward email. Dated receipts: https://shaliach.me/proof/
+
+Shaliach (Hebrew for "emissary", someone sent to act in your name) is self-hosted: threads, files and agent workspaces stay on the machine we install it on, and every agent is an unmodified Claude Code session under your own Claude account. It has a native Mac app, an iPhone app, a web board, and an HTTP + SSE API.
+
+Key facts:
+- Who runs the team: Atlas, a chief-of-staff agent, hires, briefs and retires agents and folds their messages into one readable thread.
+- Each agent has its own Chromium browser and terminal (optionally a sandboxed desktop). You can watch any agent's screen live and take over.
+- Approvals: publishing, paying, logging in and other risky steps stop and ask on your phone: Allow once, Always, or Deny.
+- Mac control: agents can run jobs on, and drive the screen of, your Mac only while you allow it; one shortcut stops it.
+- Team memory: correct one agent and the lesson is saved for the whole team.
+- Cost: Shaliach is a paid product, for businesses only. Book a demo for a quote. The agents also use your own Claude plan, like Claude Code sessions you start yourself.
+- Platforms: server on Ubuntu 24.04 or Debian 12 (x86_64/arm64) or macOS; Mac app on macOS 14+ (Apple silicon or Intel); iPhone app; Windows 10/11 (https://shaliach.me/windows/); no Android app yet.
+- Install: our team installs it for you. Book a demo: support@shaliach.me (subject: Book a demo).
+- Licence: closed source. Shaliach is a paid product for businesses.
+
+## Pages
+
+- [Home](https://shaliach.me/): what it is, how it works, the team, install, FAQ
+- [Proof: the 4 businesses it runs](https://shaliach.me/proof/): dated receipts, and what the human still does
+- [Videos](https://shaliach.me/videos.html): the launch film, the tour, and a short cut per line of work
+- [Full text for LLMs](https://shaliach.me/llms-full.txt): the FAQ and product details in one file
+
+## Comparisons
+
+- [Alternatives: why your own agent team instead of one agent in their cloud](https://shaliach.me/alternatives/)
+- [Shaliach vs OpenAI dots](https://shaliach.me/vs/openai-dots/)
+- [Shaliach vs Grok Bot (xAI)](https://shaliach.me/vs/grok/)
+- [Shaliach vs Meta Muse](https://shaliach.me/vs/meta-muse/)
+- [Shaliach vs Devin (Devin alternative)](https://shaliach.me/vs/devin/)
+- [Shaliach vs OpenClaw (OpenClaw alternative)](https://shaliach.me/vs/openclaw/)
+- [Shaliach vs OpenDots (CopilotKit's OpenDots alternative)](https://shaliach.me/vs/opendots/)

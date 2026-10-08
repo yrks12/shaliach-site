@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy | Shaliach – AI agents</title>
+<meta name="description" content="What the Shaliach apps and shaliach.me collect: the apps send nothing to us; this website keeps anonymous visit counts.">
+<link rel="canonical" href="https://shaliach.me/privacy/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Shaliach">
+<meta property="og:title" content="Privacy: Shaliach">
+<meta property="og:description" content="The Shaliach apps send nothing to us. This website keeps anonymous visit counts.">
+<meta property="og:url" content="https://shaliach.me/privacy/">
+<meta property="og:image" content="https://shaliach.me/media/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://shaliach.me/media/og.jpg">
+<meta name="theme-color" content="#f6f1e7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=IBM+Plex+Mono&family=Inter:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=IBM+Plex+Mono&family=Inter:wght@400;500;600&display=swap"></noscript>
+<link rel="stylesheet" href="/site.css">
+<script src="/stats.js" defer></script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://shaliach.me/privacy/", "url": "https://shaliach.me/privacy/", "name": "Privacy: Shaliach", "isPartOf": {"@type": "WebSite", "name": "Shaliach", "url": "https://shaliach.me/"}, "dateModified": "2026-10-08"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Shaliach", "item": "https://shaliach.me/"}, {"@type": "ListItem", "position": 2, "name": "Privacy", "item": "https://shaliach.me/privacy/"}]}]}
+</script>
+</head>
+<body>
+<main>
+<nav class="top" aria-label="Site">
+  <a class="brand" href="/"><svg class="face" viewBox="0 0 100 100" role="img" aria-label="The Shaliach face"><defs><linearGradient id="gmascot-nav" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4cc7a7"/><stop offset=".5" stop-color="#1ab88f"/><stop offset="1" stop-color="#169e7b"/></linearGradient></defs><rect width="100" height="100" rx="42" fill="url(#gmascot-nav)"/><ellipse cx="36" cy="22" rx="22" ry="11" fill="#fff" opacity=".16" transform="rotate(-24 36 22)"/><rect x="15.0" y="61.5" width="16" height="9" rx="4.5" fill="#ff7380" opacity=".55"/><rect x="69.0" y="61.5" width="16" height="9" rx="4.5" fill="#ff7380" opacity=".55"/><g class="eyes"><rect x="29.5" y="37.2" width="12.5" height="20" rx="6.25" fill="#141221"/><circle cx="38.0" cy="42.2" r="2.3" fill="#fff" opacity=".9"/><rect x="63.5" y="37.2" width="12.5" height="20" rx="6.25" fill="#141221"/><circle cx="72.0" cy="42.2" r="2.3" fill="#fff" opacity=".9"/></g></svg>Shaliach</a>
+  <a href="/alternatives/">Alternatives</a>
+  <a href="/videos.html">Videos</a>
+  <button class="theme" id="theme" type="button" aria-label="Switch light or dark mode">&#9680;</button>
+</nav>
+<p class="crumbs"><a href="../">Shaliach</a> / Privacy</p>
+<h1>Privacy</h1>
+<p class="lede">Short version: the Shaliach apps send nothing to us. We run no server for them, and we have no account system, analytics or ads in them. This website keeps anonymous visit counts and nothing else.</p>
+<p class="note">Last updated 8 October 2026.</p>
+
+<section>
+  <h2>The apps (iPhone, Mac) and the server</h2>
+  <p>Shaliach runs on your own Mac or server; our team installs it there for you. The iPhone and Mac apps connect only to <em>your</em> Shaliach server, on that Mac or server. Your messages, files, agent workspaces and settings stay on that machine. We, the developers, never receive them and cannot see them.</p>
+  <ul>
+    <li><b>No data collected by us.</b> The apps contain no analytics, crash reporting, advertising or tracking code, and they don't link your activity across other companies' apps or websites.</li>
+    <li><b>No accounts with us.</b> You pair a phone or Mac with your own server using a one-time code. Each paired device gets its own token, kept in that device's Keychain and on your server only as a hash. You can revoke it there at any time. Before the iPhone app first uses your server, it tells you where your messages and voice go and asks you to agree. Its demo mode sends nothing anywhere.</li>
+    <li><b>Microphone and speech.</b> The apps use the microphone only while you hold the mic button, record a voice message or are on a call. When the app turns speech into text itself, it uses Apple's speech recogniser, which may process audio on Apple's servers under Apple's privacy policy. The text goes to your own server.</li>
+    <li><b>Camera and photos.</b> These are used only when you choose to take or attach a photo to send to one of your agents. The photo goes to your own server.</li>
+    <li><b>Notifications.</b> These come from your own server, and from ntfy only if you set it up there.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Services you choose to connect</h2>
+  <p>Your server talks to outside services only when you set them up, under your own accounts and keys:</p>
+  <ul>
+    <li><b>Anthropic.</b> Every agent is the official Claude Code CLI, signed in with your own Claude account or API key. What it sends to Anthropic follows Anthropic's own terms and privacy policy.</li>
+    <li><b>OpenAI (optional, for live voice calls).</b> If you add your own OpenAI API key to your server, then during a live call the app streams your voice directly to OpenAI's Realtime service. It does this with a short-lived key your server creates for that call. With no key added, nothing goes to OpenAI.</li>
+    <li><b>Anything your agents use for you.</b> Websites they browse, and connectors you install, such as GitHub, are used under the accounts you give them.</li>
+  </ul>
+  <p>We are not a party to any of these, and we receive nothing from them.</p>
+</section>
+
+<section>
+  <h2>This website (shaliach.me)</h2>
+  <ul>
+    <li><b>Visit counts.</b> Each page view adds one to a few public counters on <a href="https://abacus.jasoncameron.dev" rel="nofollow noopener">abacus</a>: views per day, views per page, and which kind of site sent you (for example Hacker News or GitHub). No cookies, no local storage for tracking, no identifiers, and nothing that tells one visitor from another.</li>
+    <li><b>Theme.</b> Your light or dark choice is saved in your browser's local storage, only on your device.</li>
+    <li><b>Hosting and fonts.</b> The site is hosted on GitHub Pages and loads fonts from Google Fonts. Like any web server, they receive your IP address and browser details when your browser fetches a page or font, under their own privacy policies.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Children</h2>
+  <p>Shaliach is a product for businesses, not directed at children under 13.</p>
+</section>
+
+<section>
+  <h2>Contact and changes</h2>
+  <p>Questions or requests: write to <a href="mailto:admin@yairtech.co.uk">admin@yairtech.co.uk</a> or <a href="mailto:support@shaliach.me">support@shaliach.me</a>. Help with the apps is on the <a href="/support/">support page</a>. If this page changes, the date above changes.</p>
+</section>
+
+<footer>
+  <p>Shaliach is a paid product for businesses. Book a demo: <a href="mailto:support@shaliach.me?subject=Book%20a%20demo">support@shaliach.me</a>. Independent project, not affiliated with or endorsed by Anthropic or OpenAI.</p>
+  <p><a href="/">Home</a> &middot; <a href="/alternatives/">Alternatives</a> &middot; <a href="/videos.html">Videos</a> &middot; <a href="/privacy/">Privacy</a> &middot; <a href="/support/">Support</a></p>
+</footer>
+</main>
+<script>(function(){var r=document.documentElement,b=document.getElementById('theme');if(!b)return;b.addEventListener('click',function(){var d=r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');d=d==='dark'?'light':'dark';r.setAttribute('data-theme',d);try{localStorage.setItem('theme',d)}catch(e){}});})();</script>
+</body>
+</html>
