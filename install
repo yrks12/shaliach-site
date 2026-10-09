@@ -1,4 +1,36 @@
 #!/usr/bin/env bash
-# Shaliach is no longer installed from this script.
-printf '%s\n' 'Shaliach is now installed by our team, for businesses only.' 'Book a demo: support@shaliach.me (subject: Book a demo) or https://shaliach.me/'
-exit 1
+# Shaliach installer:  curl -fsSL https://shaliach.me/install | bash
+# Shaliach's code is in a private GitHub repo, so this needs the GitHub CLI
+# (gh) signed in to an account that can see it. Each missing piece stops
+# here with one line that says what to do.
+set -u
+
+shaliach_install() {
+  local repo="${SHALIACH_REPO:-yrks12/agent-deck-internal}" tmp rc
+  fail() { printf 'shaliach: %s\n' "$*" >&2; exit 1; }
+
+  command -v git >/dev/null 2>&1 \
+    || fail "git is missing. Run  xcode-select --install , then run this again."
+  command -v gh >/dev/null 2>&1 \
+    || fail "the GitHub CLI is missing. Run  brew install gh  and  gh auth login , then run this again."
+  gh auth status >/dev/null 2>&1 \
+    || fail "the GitHub CLI is not signed in. Run  gh auth login , then run this again."
+  gh api "repos/${repo}" >/dev/null 2>&1 \
+    || fail "your GitHub account ($(gh api user --jq .login 2>/dev/null || echo unknown)) cannot see ${repo}. Ask support@shaliach.me for access, then run this again."
+  gh auth setup-git >/dev/null 2>&1 \
+    || fail "could not let git use your GitHub sign-in (gh auth setup-git failed)."
+
+  tmp="$(mktemp "${TMPDIR:-/tmp}/shaliach-install.XXXXXX")" || fail "could not make a temp file."
+  gh api -H 'Accept: application/vnd.github.raw' "repos/${repo}/contents/install.sh" > "$tmp" 2>/dev/null \
+    && [ -s "$tmp" ] \
+    || { rm -f "$tmp"; fail "could not download the installer from ${repo}."; }
+
+  AGENT_DECK_REPO="$repo" AGENT_DECK_REPO_URL="${AGENT_DECK_REPO_URL:-https://github.com/${repo}.git}" \
+    bash "$tmp" "$@"
+  rc=$?
+  rm -f "$tmp"
+  exit "$rc"
+}
+
+# Called last, so a cut-off download never runs half a script.
+shaliach_install "$@"
