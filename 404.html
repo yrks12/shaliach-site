@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found | Shaliach</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/site.css">
+<script>
+// GitHub Pages serves this page for any missing path. The blog moved to
+// blog.shaliach.me, so an old /blog/<post> or /he/<post> link lands there, path kept.
+(function () {
+  var m = location.pathname.match(/^\/(blog|he)(\/.*)?$/);
+  if (!m) return;
+  var rest = m[1] === "blog" ? (m[2] || "/").slice(1) : "he" + (m[2] || "/");
+  location.replace("https://blog.shaliach.me/" + rest + location.search + location.hash);
+})();
+</script>
+</head>
+<body>
+<main>
+<h1>Page not found</h1>
+<p>There's nothing at this address. Try the <a href="/">home page</a> or the <a href="https://blog.shaliach.me/">blog</a>.</p>
+</main>
+</body>
+</html>
