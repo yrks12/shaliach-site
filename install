@@ -3,6 +3,8 @@
 # Shaliach's code is in a private GitHub repo, so this needs the GitHub CLI
 # (gh) signed in to an account that can see it. Each missing piece stops
 # here with one line that says what to do.
+# A customer with an install code needs none of that:
+#   curl -fsSL https://shaliach.me/install | SHALIACH_CODE=XXXX-XXXX-XXXX-XXXX bash
 set -u
 
 shaliach_install() {
@@ -32,5 +34,55 @@ shaliach_install() {
   exit "$rc"
 }
 
+# With an install code (SHALIACH_CODE; the Windows app sets it in WSL): no gh, no git,
+# no access to the repo. Fetch the server bundle from shift.shaliach.me/deck, check
+# its sha256 and run its own install.sh. The code travels only in a header read from
+# a 0600 file: never in a URL (Cloud Run logs those) and never in argv (`ps` shows it).
+shaliach_install_by_code() {
+  base="${SHALIACH_BUNDLE_URL:-https://shift.shaliach.me/deck}"
+  fail() { printf 'shaliach: %s\n' "$*" >&2; exit 1; }
+  command -v curl >/dev/null 2>&1 || fail "curl is missing. Run  sudo apt-get install -y curl , then run this again."
+  command -v tar >/dev/null 2>&1 || fail "tar is missing. Run  sudo apt-get install -y tar , then run this again."
+
+  work="$(mktemp -d "${TMPDIR:-/tmp}/shaliach-install.XXXXXX")" || fail "could not make a temp folder."
+  trap 'rm -rf "$work"' EXIT
+  (umask 077; {
+    printf 'X-Shaliach-Code: %s\n' "$SHALIACH_CODE"
+    # An if, not &&: with no machine-id the group must still succeed.
+    if [ -r /etc/machine-id ]; then printf 'X-Shaliach-Machine: %s\n' "$(cat /etc/machine-id)"; fi
+  } > "$work/headers") || fail "could not write to ${work}."
+
+  get() {  # get <path> <file>: one gated download; says why on failure
+    # No -f: it exits 22 on every status >= 400, and only 401/403 mean a refused
+    # code. A 5xx, 429 or 404 is our outage, never a reason to retype the code.
+    status="$(curl -sS -A shaliach-install/1 -H "@$work/headers" -o "$2" -w '%{http_code}' "$base/$1" 2>/dev/null)" \
+      || fail "could not reach shift.shaliach.me to download Shaliach. Check the internet connection, then run this again."
+    case $status in
+      200) ;;
+      401|403) fail "your install code was not accepted. Check it, or ask support@shaliach.me for a new one." ;;
+      *) fail "shift.shaliach.me answered ${status} instead of the Shaliach download, so nothing was installed. Try again in a few minutes." ;;
+    esac
+  }
+  get latest.json "$work/latest.json"
+  sum="$(sed -n 's/.*"sha256": *"\([0-9a-f]\{64\}\)".*/\1/p' "$work/latest.json" | head -n 1)"
+  version="$(sed -n 's/.*"version": *"\([^"]*\)".*/\1/p' "$work/latest.json" | head -n 1)"
+  [ -n "$sum" ] && [ -n "$version" ] || fail "the download list from shift.shaliach.me made no sense; nothing was installed."
+  get bundle "$work/bundle.tar.gz"
+  if command -v sha256sum >/dev/null 2>&1; then got="$(sha256sum "$work/bundle.tar.gz")"
+  else got="$(shasum -a 256 "$work/bundle.tar.gz")"; fi
+  [ "${got%% *}" = "$sum" ] \
+    || fail "the Shaliach download did not match its checksum, so nothing was installed. Run this again."
+  mkdir "$work/src" && tar -xzf "$work/bundle.tar.gz" -C "$work/src" \
+    || fail "could not unpack the Shaliach download."
+  [ -f "$work/src/shaliach-server/install.sh" ] || fail "the Shaliach download has no installer in it."
+
+  env -u SHALIACH_CODE AGENT_DECK_BUNDLE="$work/bundle.tar.gz" AGENT_DECK_BUNDLE_VERSION="$version" \
+    bash "$work/src/shaliach-server/install.sh" "$@"
+  exit $?
+}
+
 # Called last, so a cut-off download never runs half a script.
+if [ -n "${SHALIACH_CODE:-}" ]; then
+  shaliach_install_by_code "$@"
+fi
 shaliach_install "$@"
