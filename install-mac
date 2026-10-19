@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# Shaliach for Mac:  curl -fsSL https://shaliach.me/install-mac | bash
+# The app's releases live in the private repo, so this needs the GitHub CLI (gh) signed in
+# to an account that can see it. It fetches scripts/install-mac.sh through gh and runs it
+# against that repo with gh's token (the token is only ever sent as a header). Options pass
+# through:  ... | bash -s -- --pair ADK1.xxxxxxxx
+set -u
+
+shaliach_install_mac() {
+  local repo="${SHALIACH_REPO:-yrks12/agent-deck-internal}" tmp rc token
+  fail() { printf 'shaliach: %s\n' "$*" >&2; exit 1; }
+
+  command -v gh >/dev/null 2>&1 \
+    || fail "the GitHub CLI is missing. Run  brew install gh  and  gh auth login , then run this again."
+  gh auth status >/dev/null 2>&1 \
+    || fail "the GitHub CLI is not signed in. Run  gh auth login , then run this again."
+  gh api "repos/${repo}" >/dev/null 2>&1 \
+    || fail "your GitHub account cannot see ${repo}. Ask support@shaliach.me for access, then run this again."
+  token="$(gh auth token 2>/dev/null)" && [ -n "$token" ] \
+    || fail "could not read the GitHub CLI's token (gh auth token)."
+
+  tmp="$(mktemp "${TMPDIR:-/tmp}/shaliach-install-mac.XXXXXX")" || fail "could not make a temp file."
+  gh api -H 'Accept: application/vnd.github.raw' "repos/${repo}/contents/scripts/install-mac.sh" > "$tmp" 2>/dev/null \
+    && [ -s "$tmp" ] \
+    || { rm -f "$tmp"; fail "could not download the Mac installer from ${repo}."; }
+
+  AGENT_DECK_REPO="$repo" GH_TOKEN="$token" bash "$tmp" "$@"
+  rc=$?
+  rm -f "$tmp"
+  exit "$rc"
+}
+
+# Called last, so a cut-off download never runs half a script.
+shaliach_install_mac "$@"
