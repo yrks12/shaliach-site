@@ -67,16 +67,18 @@ h1{font:800 clamp(3.2rem,13vw,6.5rem)/.95 Fraunces,Georgia,serif;margin:0 0 18px
 #cta-bar .btn{flex:1;text-align:center;font-size:1rem;padding:12px 16px}
 @media(max-width:640px){#cta-bar{display:flex}body{padding-bottom:72px}}
 .link{color:var(--fg);font-weight:500;padding:14px 8px}
-.film{position:relative;margin:8px 0 36px;border-radius:var(--radius);overflow:hidden;background:#0b0a12;border:1px solid var(--line)}
-.film video{display:block;width:100%;height:auto;max-height:80vh;margin:0 auto}
-.pstrip{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
-.pshot{margin:0}
-.pshot img{display:block;width:100%;height:auto;border-radius:var(--radius);border:1px solid var(--line)}
-.pshot figcaption{font-size:.9rem;color:var(--muted,inherit);margin-top:8px}
-.pshot--wide{grid-column:1/-1;order:-1}
-@media(min-width:720px){.pstrip{grid-template-columns:2fr 1fr 1fr}.pshot--wide{grid-column:auto}}
-.sound{position:absolute;right:14px;bottom:14px;border:0;border-radius:999px;padding:10px 16px;font:600 .95rem Inter,sans-serif;background:rgba(0,0,0,.65);color:#fff;cursor:pointer}
-.sound[hidden]{display:none}
+.reel{margin:8px 0 28px}
+.reel__stage{display:grid;border-radius:var(--radius);overflow:hidden;background:#0b0a12;border:1px solid var(--line);height:min(68vh,560px)}
+.reel__f{grid-area:1/1;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:8px;padding:12px 12px 14px;opacity:0;transition:opacity .6s}
+.reel__f:first-child{opacity:1}
+.reel.js .reel__f:first-child{opacity:0}
+.reel.js .reel__f.on{opacity:1}
+.reel__f img{display:block;flex:1;min-height:0;max-width:100%;width:auto;height:auto;object-fit:contain}
+.reel__f figcaption{color:#e8e6f2;font-size:.95rem;text-align:center}
+.reel__pause{font:inherit;color:inherit;background:none;border:1px solid var(--line);border-radius:8px;padding:2px 10px;cursor:pointer;margin-left:6px}
+@media(prefers-reduced-motion:reduce){.reel__stage{display:block;height:auto}.reel__f{opacity:1!important;transition:none;padding:12px}.reel__f img{max-height:60vh}}
+.heroact{display:none;margin:0 0 14px}
+@media(max-width:640px){.hero{display:flex;flex-direction:column}.reel{order:-2;margin:0 0 10px}.heroact{order:-1;display:block}.reel__stage{height:min(46vh,420px)}}
 h2{font:600 1.7rem/1.2 Fraunces,Georgia,serif;margin:0 0 14px}
 section{padding:36px 0;border-top:1px solid var(--line)}
 .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
@@ -148,7 +150,7 @@ a{color:var(--accent)}
    "operatingSystem": "macOS 14+, Ubuntu 24.04, Debian 12, iOS",
    "url": "https://shaliach.me/",
    "image": "https://shaliach.me/media/og.jpg",
-   "screenshot": "https://shaliach.me/media/hero-16x9.jpg",
+   "screenshot": "https://shaliach.me/proof/media/app-mac-iphone.jpg",
    "offers": {
     "@type": "Offer",
     "description": "Paid, for businesses only. Book a demo for a quote.",
@@ -166,18 +168,6 @@ a{color:var(--accent)}
     "Mac app, iPhone app, web board and HTTP + SSE API",
     "Installed by our team on your own Mac or server, under your own Claude plan"
    ]
-  },
-  {
-   "@type": "VideoObject",
-   "name": "Shaliach in 35 seconds",
-   "description": "You text Atlas, Atlas hires a team, each agent works on its own computer, and asks on your phone before anything goes live.",
-   "thumbnailUrl": [
-    "https://shaliach.me/media/hero-16x9.jpg"
-   ],
-   "uploadDate": "2026-10-02T03:25:14-04:00",
-   "duration": "PT35S",
-   "contentUrl": "https://shaliach.me/media/hero-16x9.mp4",
-   "embedUrl": "https://shaliach.me/"
   },
   {
    "@type": "FAQPage",
@@ -212,7 +202,7 @@ a{color:var(--accent)}
      "name": "Does it touch my Claude login? Is this within Anthropic's terms?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Every agent is the unmodified claude CLI. You sign in with Claude's own claude auth login; the CLI keeps and refreshes its login, and Shaliach never stores your Claude token. Nothing is resold or pooled. Some questions about always-on use on consumer plans have no written answer yet. If you run it for a business, an API key under Anthropic's commercial terms is the safer choice."
+      "text": "For always-on or business use, use your own Anthropic API key, under Anthropic's commercial terms. Every agent is the unmodified claude CLI. You can also sign in with Claude's own claude auth login; the CLI keeps and refreshes its login, and Shaliach never stores your Claude token. Nothing is resold or pooled."
      }
     },
     {
@@ -302,16 +292,17 @@ a{color:var(--accent)}
   <p class="tag">Send one. A whole team goes.</p>
   <p class="sub">Your own team of Claude Code agents, on your Mac or server. You text one, it hires the rest, and nothing goes out without your tap.</p>
   <p class="proof">Runs 4 real businesses today: <a href="/proof/">see the receipts</a>.</p>
-<!-- The hero film. To swap it for a new render: scripts/site-hero.sh <16x9.mp4> <vertical.mp4>,
-     which rewrites the four files in docs/site/media/ that this block names. Nothing else changes. -->
-<div class="film">
-  <video id="film" autoplay muted loop playsinline preload="metadata" poster="media/hero-16x9.jpg"
-         data-wide="media/hero-16x9" data-tall="media/hero-9x16"
-         aria-label="A 35-second tour: you text Atlas, Atlas hires a team, each agent works on its own computer, and asks on your phone before anything goes live">
-    <source src="media/hero-16x9.mp4" type="video/mp4">
-  </video>
-  <button class="sound" id="sound" type="button">&#9654; Play with sound</button>
-</div>
+<!-- The hero reel: three real Mac/iPhone app captures from /proof/ (made-up demo data), muted, auto-advancing.
+     Never the web board, never a recording of a real machine. -->
+<section class="reel" id="reel" aria-label="The Shaliach app on Mac and iPhone, in three screens">
+  <div class="reel__stage">
+    <figure class="reel__f"><img src="proof/media/app-approve.jpg" width="480" height="940" fetchpriority="high" alt="An approval card in the Shaliach iPhone app asking before a batch of replies is sent, shown with demo data"><figcaption>One tap to approve anything that goes outside.</figcaption></figure>
+    <figure class="reel__f"><img src="proof/media/app-lesson.jpg" width="480" height="984" loading="lazy" alt="A correction in the Shaliach iPhone app, saved as a team lesson that every agent follows, shown with demo data"><figcaption>Corrections become lessons every agent follows.</figcaption></figure>
+    <figure class="reel__f"><img src="proof/media/app-mac-iphone.jpg" width="1200" height="825" loading="lazy" alt="The Shaliach app on a Mac and an iPhone: Atlas, the chief of staff, and the team, shown with demo data"><figcaption>The app on Mac and iPhone.</figcaption></figure>
+  </div>
+  <p class="note">Screens shown with demo data. <a href="/proof/">See the receipts</a>. <button class="reel__pause" id="reel-pause" type="button" aria-pressed="false">Pause</button></p>
+</section>
+  <p class="heroact"><a class="btn" href="/book/">Book a live demo</a></p>
   <div class="get" id="install">
     <p class="get__h">Shaliach for Business</p>
     <p>A paid product, sold to businesses only. We install it on your Mac or server and do the first setup with you. Setup from $5,000, installed for you; we quote your exact scope on the call.</p>
@@ -319,16 +310,6 @@ a{color:var(--accent)}
     <p class="get__n">Windows too: <a href="windows/">Shaliach for Windows</a> &middot; <a href="videos.html">Videos</a></p>
   </div>
 </header>
-
-<section id="proof-strip">
-  <h2>This is the product</h2>
-  <div class="pstrip">
-    <figure class="pshot"><img src="proof/media/app-approve.jpg" width="480" height="940" alt="An approval card in the Shaliach iPhone app asking before a batch of replies is sent, shown with demo data" loading="lazy"><figcaption>One tap to approve anything that goes outside.</figcaption></figure>
-    <figure class="pshot"><img src="proof/media/app-lesson.jpg" width="480" height="984" alt="A correction in the Shaliach iPhone app, saved as a team lesson that every agent follows, shown with demo data" loading="lazy"><figcaption>Corrections become lessons every agent follows.</figcaption></figure>
-    <figure class="pshot pshot--wide"><img src="proof/media/app-mac-iphone.jpg" width="1200" height="825" alt="The Shaliach app on a Mac and an iPhone: Atlas, the chief of staff, and the team, shown with demo data" loading="lazy"><figcaption>The app on Mac and iPhone.</figcaption></figure>
-  </div>
-  <p class="note">Screens shown with demo data. <a href="/proof/">See the receipts</a>.</p>
-</section>
 
 <section>
   <h2>The job description is two thousand years old</h2>
@@ -392,7 +373,7 @@ a{color:var(--accent)}
   <details class="qa"><summary><h3>What is Shaliach?</h3></summary><p>Shaliach is a team of always-on Claude Code agents that runs on your own Mac or server. You text one agent, Atlas, the chief of staff; Atlas hires the agents the job needs, gives each one its own browser and terminal, and asks you on your phone before anything risky happens. There is a Mac app, an iPhone app and a web board.</p></details>
   <details class="qa"><summary><h3>Can I run Claude Code agents from my phone?</h3></summary><p>Yes. You chat with Atlas and the team from the iPhone app (or the web board in any browser), approve risky steps with one tap, and watch any agent's screen live. There is no Android app yet.</p></details>
   <details class="qa"><summary><h3>Where do my messages, code and files go?</h3></summary><p>To your machine and nowhere else we run. Shaliach has no cloud of its own. Threads, files and agent workspaces live on the server or Mac we install it on. The agents talk to Anthropic the same way Claude Code always does, under your account. Voice calls are optional and go to OpenAI only if you add your own API key.</p></details>
-  <details class="qa"><summary><h3>Does it touch my Claude login? Is this within Anthropic's terms?</h3></summary><p>Every agent is the unmodified <code>claude</code> CLI. You sign in with Claude's own <code>claude auth login</code>; the CLI keeps and refreshes its login, and Shaliach never stores your Claude token. Nothing is resold or pooled. Some questions about always-on use on consumer plans have no written answer yet. If you run it for a business, an API key under Anthropic's commercial terms is the safer choice.</p></details>
+  <details class="qa"><summary><h3>Does it touch my Claude login? Is this within Anthropic's terms?</h3></summary><p>For always-on or business use, use your own Anthropic API key, under Anthropic's commercial terms. Every agent is the unmodified <code>claude</code> CLI. You can also sign in with Claude's own <code>claude auth login</code>; the CLI keeps and refreshes its login, and Shaliach never stores your Claude token. Nothing is resold or pooled.</p></details>
   <details class="qa"><summary><h3>What will it cost me?</h3></summary><p>Shaliach is a paid product, for businesses only. Book a demo for a quote. On top of that, the agents use your own Claude plan, exactly like Claude Code sessions you start yourself. Five agents working at once use it about five times as fast as one. Start with one or two agents and watch your usage on the first day. We have not published a "typical cost" because we have not measured one we trust.</p></details>
   <details class="qa"><summary><h3>Which platforms work?</h3></summary><p>We install it for you on one of these. Server: Ubuntu 24.04 or Debian 12 (x86_64 or arm64), or macOS. Mac app: macOS 14+, Apple silicon or Intel. iPhone app: yes. Any browser: the web board. <a href="windows/">Windows 10 or 11</a>: yes. There is no Android app yet.</p></details>
   <details class="qa"><summary><h3>What can the agents do on my machine?</h3></summary><p>Anything their Unix user can do. They run Claude Code in bypassPermissions mode so they do not stall on prompts. The approval cards (Allow once / Always / Deny) stop risky steps, but they are a convenience, not a sandbox. On a server with agent desktops on, the service user is in the <code>docker</code> group, which is root-equivalent. So use a VPS that does nothing else. The Mac bridge, which lets agents run jobs on your Mac, is off until you turn it on, logs every job, and can be stopped from the menu bar.</p></details>
@@ -411,19 +392,29 @@ a{color:var(--accent)}
 <div id="cta-bar"><a class="btn" href="/book/">Book a demo</a></div>
 <script>
 (function () {
-  var v = document.getElementById('film'), b = document.getElementById('sound');
-  if (window.matchMedia('(max-aspect-ratio: 4/5)').matches) {
-    var t = v.getAttribute('data-tall');
-    v.poster = t + '.jpg';
-    v.querySelector('source').src = t + '.mp4';
-    v.load();
-  }
-  b.addEventListener('click', function () {
-    v.muted = false; v.currentTime = 0; v.loop = false; v.play(); b.hidden = true;
+  var reel = document.getElementById('reel'), btn = document.getElementById('reel-pause');
+  var frames = reel.querySelectorAll('.reel__f'), i = 0, timer = null;
+  var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(n) { i = n % frames.length; frames.forEach(function (f, k) { f.classList.toggle('on', k === i); }); }
+  function start() { timer = setInterval(function () { show(i + 1); }, 4500); }
+  function stop() { clearInterval(timer); timer = null; }
+  if (still) { btn.hidden = true; return; }
+  reel.classList.add('js'); show(0); start();
+  btn.addEventListener('click', function () {
+    var paused = timer === null;
+    if (paused) { start(); } else { stop(); }
+    btn.textContent = paused ? 'Pause' : 'Play'; btn.setAttribute('aria-pressed', paused ? 'false' : 'true');
   });
-  v.addEventListener('ended', function () { v.muted = true; v.loop = true; v.play(); b.hidden = false; });
 })();
 (function(){var r=document.documentElement,b=document.getElementById('theme');if(!b)return;b.addEventListener('click',function(){var d=r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');d=d==='dark'?'light':'dark';r.setAttribute('data-theme',d);try{localStorage.setItem('theme',d)}catch(e){}});})();
+</script>
+<script>
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+  var bar = document.getElementById('cta-bar'), act = document.querySelector('.heroact');
+  if (!bar || !act) return;
+  new IntersectionObserver(function (e) { bar.style.display = e[0].isIntersecting ? 'none' : ''; }).observe(act);
+})();
 </script>
 </body>
 </html>

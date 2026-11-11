@@ -35,7 +35,7 @@ To your machine and nowhere else we run. Shaliach has no cloud of its own. Threa
 
 ### Does it touch my Claude login? Is this within Anthropic's terms?
 
-Every agent is the unmodified claude CLI. You sign in with Claude's own claude auth login; the CLI keeps and refreshes its login, and Shaliach never stores your Claude token. Nothing is resold or pooled. Some questions about always-on use on consumer plans have no written answer yet. If you run it for a business, an API key under Anthropic's commercial terms is the safer choice.
+For always-on or business use, use your own Anthropic API key, under Anthropic's commercial terms. Every agent is the unmodified claude CLI. You can also sign in with Claude's own claude auth login; the CLI keeps and refreshes its login, and Shaliach never stores your Claude token. Nothing is resold or pooled.
 
 ### What will it cost me?
 
