@@ -1,0 +1,13 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex"><title>Shaliach demo</title>
+<style>html,body{margin:0;width:1280px;height:720px;background:#000;overflow:hidden}video{width:1280px;height:720px;display:block;object-fit:contain}
+#go{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:#000;color:#fff;font:600 32px sans-serif;cursor:pointer}</style></head>
+<body><video id="v" src="demo.mp4" playsinline preload="auto"></video><div id="go">Click to start the demo</div>
+<script>
+const v=document.getElementById('v'),g=document.getElementById('go');
+function start(){v.currentTime=0;v.muted=false;v.play().then(()=>{g.style.display='none'}).catch(()=>{g.style.display='flex'})}
+g.onclick=start;
+// ?t=N delays the start by N seconds so it can begin once the bot is in the call
+const t=parseFloat(new URLSearchParams(location.search).get('t')||'0');
+v.addEventListener('ended',()=>{v.pause()});
+setTimeout(start,t*1000);
+</script></body></html>
