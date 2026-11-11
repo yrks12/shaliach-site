@@ -63,6 +63,12 @@ h1{font:800 clamp(3.2rem,13vw,6.5rem)/.95 Fraunces,Georgia,serif;margin:0 0 18px
 .link{color:var(--fg);font-weight:500;padding:14px 8px}
 .film{position:relative;margin:8px 0 36px;border-radius:16px;overflow:hidden;background:#0b0a12;border:1px solid var(--line)}
 .film video{display:block;width:100%;height:auto;max-height:80vh;margin:0 auto}
+.pstrip{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.pshot{margin:0}
+.pshot img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--line)}
+.pshot figcaption{font-size:.9rem;color:var(--muted,inherit);margin-top:8px}
+.pshot--wide{grid-column:1/-1;order:-1}
+@media(min-width:720px){.pstrip{grid-template-columns:2fr 1fr 1fr}.pshot--wide{grid-column:auto}}
 .sound{position:absolute;right:14px;bottom:14px;border:0;border-radius:999px;padding:10px 16px;font:600 .95rem Inter,sans-serif;background:rgba(0,0,0,.65);color:#fff;cursor:pointer}
 .sound[hidden]{display:none}
 h2{font:600 1.7rem/1.2 Fraunces,Georgia,serif;margin:0 0 14px}
@@ -140,7 +146,7 @@ a{color:var(--accent)}
    "offers": {
     "@type": "Offer",
     "description": "Paid, for businesses only. Book a demo for a quote.",
-    "url": "mailto:support@shaliach.me?subject=Book%20a%20demo"
+    "url": "https://shaliach.me/book/"
    },
    "publisher": {
     "@id": "https://shaliach.me/#org"
@@ -281,6 +287,7 @@ a{color:var(--accent)}
   <a href="videos.html">Videos</a>
   <a href="https://blog.shaliach.me/">Blog</a>
   <a href="#faq">FAQ</a>
+  <a href="/book/">Book a demo</a>
   <button class="theme" id="theme" type="button" aria-label="Switch light or dark mode">&#9680;</button>
 </nav>
 <header class="hero">
@@ -291,8 +298,8 @@ a{color:var(--accent)}
   <p class="proof">Runs 4 real businesses today: <a href="/proof/">see the receipts</a>.</p>
   <div class="get" id="install">
     <p class="get__h">Shaliach for Business</p>
-    <p>A paid product, sold to businesses only. We install it on your Mac or server and do the first setup with you.</p>
-    <div class="cta"><a class="btn" href="mailto:support@shaliach.me?subject=Book%20a%20demo">Book a demo</a></div>
+    <p>A paid product, sold to businesses only. We install it on your Mac or server and do the first setup with you. Setup from $5,000, installed for you; we quote your exact scope on the call.</p>
+    <div class="cta"><a class="btn" href="/book/">Book a demo</a></div>
     <p class="get__n">Windows too: <a href="windows/">Shaliach for Windows</a> &middot; <a href="videos.html">Videos</a></p>
   </div>
 </header>
@@ -307,6 +314,16 @@ a{color:var(--accent)}
   </video>
   <button class="sound" id="sound" type="button">&#9654; Play with sound</button>
 </div>
+
+<section id="proof-strip">
+  <h2>This is the product</h2>
+  <div class="pstrip">
+    <figure class="pshot"><img src="proof/media/app-approve.jpg" width="480" height="940" alt="An approval card in the Shaliach iPhone app asking before a batch of replies is sent, shown with demo data" loading="lazy"><figcaption>One tap to approve anything that goes outside.</figcaption></figure>
+    <figure class="pshot"><img src="proof/media/app-lesson.jpg" width="480" height="984" alt="A correction in the Shaliach iPhone app, saved as a team lesson that every agent follows, shown with demo data" loading="lazy"><figcaption>Corrections become lessons every agent follows.</figcaption></figure>
+    <figure class="pshot pshot--wide"><img src="proof/media/app-mac-iphone.jpg" width="1200" height="825" alt="The Shaliach app on a Mac and an iPhone: Atlas, the chief of staff, and the team, shown with demo data" loading="lazy"><figcaption>The app on Mac and iPhone.</figcaption></figure>
+  </div>
+  <p class="note">Screens shown with demo data. <a href="/proof/">See the receipts</a>.</p>
+</section>
 
 <section>
   <h2>The job description is two thousand years old</h2>
@@ -376,7 +393,7 @@ a{color:var(--accent)}
 </section>
 
 <footer>
-  <p>Shaliach is a paid product for businesses. Book a demo: <a href="mailto:support@shaliach.me?subject=Book%20a%20demo">support@shaliach.me</a>.</p>
+  <p>Shaliach is a paid product for businesses. <a href="/book/">Book a demo</a>. Contact: support@shaliach.me.</p>
   <p>Independent project, not affiliated with or endorsed by Anthropic. &middot; <a href="videos.html">Videos</a> &middot; <a href="alternatives/">Alternatives</a></p>
 </footer>
 </main>
