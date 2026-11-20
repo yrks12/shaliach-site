@@ -14,9 +14,9 @@ Key facts:
 - Approvals: publishing, paying, logging in and other risky steps stop and ask on your phone: Allow once, Always, or Deny.
 - Mac control: agents can run jobs on, and drive the screen of, your Mac only while you allow it; one shortcut stops it.
 - Team memory: correct one agent and the lesson is saved for the whole team.
-- Cost: Shaliach is a paid product, for businesses only. Book a demo for a quote. The agents also use your own Claude plan, like Claude Code sessions you start yourself.
+- Cost: Shaliach is a paid product, for businesses only. Book a call for a quote. The agents also use your own Claude plan, like Claude Code sessions you start yourself.
 - Platforms: server on Ubuntu 24.04 or Debian 12 (x86_64/arm64) or macOS; Mac app on macOS 14+ (Apple silicon or Intel); iPhone app; Windows 10/11 (https://shaliach.me/windows/); no Android app yet.
-- Install: our team installs it for you. Book a demo: support@shaliach.me (subject: Book a demo).
+- Install: our team installs it for you. Book a call: support@shaliach.me (subject: Book a call).
 - Licence: closed source. Shaliach is a paid product for businesses.
 
 ## Frequently asked questions
@@ -39,7 +39,7 @@ For always-on or business use, use your own Anthropic API key, under Anthropic's
 
 ### What will it cost me?
 
-Shaliach is a paid product, for businesses only. Book a demo for a quote. On top of that, the agents use your own Claude plan, exactly like Claude Code sessions you start yourself. Five agents working at once use it about five times as fast as one. Start with one or two agents and watch your usage on the first day. We have not published a "typical cost" because we have not measured one we trust.
+Shaliach is a paid product, for businesses only. Book a call for a quote. On top of that, the agents use your own Claude plan, exactly like Claude Code sessions you start yourself. Five agents working at once use it about five times as fast as one. Start with one or two agents and watch your usage on the first day. We have not published a "typical cost" because we have not measured one we trust.
 
 ### Which platforms work?
 
@@ -90,4 +90,4 @@ No. It is an independent project that runs Claude Code. "Claude" and "Claude Cod
 
 - Home: https://shaliach.me/
 - Videos: https://shaliach.me/videos.html
-- Book a demo: support@shaliach.me (subject: Book a demo)
+- Book a call: support@shaliach.me (subject: Book a call)

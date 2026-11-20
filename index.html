@@ -153,7 +153,7 @@ a{color:var(--accent)}
    "screenshot": "https://shaliach.me/proof/media/app-mac-iphone.jpg",
    "offers": {
     "@type": "Offer",
-    "description": "Paid, for businesses only. Book a demo for a quote.",
+    "description": "Paid, for businesses only. Book a call for a quote.",
     "url": "https://shaliach.me/book/"
    },
    "publisher": {
@@ -210,7 +210,7 @@ a{color:var(--accent)}
      "name": "What will it cost me?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Shaliach is a paid product, for businesses only. Book a demo for a quote. On top of that, the agents use your own Claude plan, exactly like Claude Code sessions you start yourself. Five agents working at once use it about five times as fast as one. Start with one or two agents and watch your usage on the first day. We have not published a \"typical cost\" because we have not measured one we trust."
+      "text": "Shaliach is a paid product, for businesses only. Book a call for a quote. On top of that, the agents use your own Claude plan, exactly like Claude Code sessions you start yourself. Five agents working at once use it about five times as fast as one. Start with one or two agents and watch your usage on the first day. We have not published a \"typical cost\" because we have not measured one we trust."
      }
     },
     {
@@ -283,7 +283,7 @@ a{color:var(--accent)}
   <a href="videos.html">Videos</a>
   <a href="https://blog.shaliach.me/">Blog</a>
   <a href="#faq">FAQ</a>
-  <a class="navbook" href="/book/">Book a demo</a>
+  <a class="navbook" href="/book/">Book a call</a>
   <button class="theme" id="theme" type="button" aria-label="Switch light or dark mode">&#9680;</button>
 </nav>
 <header class="hero">
@@ -306,7 +306,7 @@ a{color:var(--accent)}
   <div class="get" id="install">
     <p class="get__h">Shaliach for Business</p>
     <p>A paid product, sold to businesses only. We install it on your Mac or server and do the first setup with you. Setup from $5,000, installed for you; we quote your exact scope on the call.</p>
-    <div class="cta"><a class="btn" href="/book/">Book a demo</a></div>
+    <div class="cta"><a class="btn" href="/book/">Book a call</a></div>
     <p class="get__n">Windows too: <a href="windows/">Shaliach for Windows</a> &middot; <a href="videos.html">Videos</a></p>
   </div>
 </header>
@@ -330,7 +330,7 @@ a{color:var(--accent)}
 <section id="cta-how" class="ctaband">
   <h2>Want a team like this for your business?</h2>
   <p>We install it for you and do the first setup with you.</p>
-  <div class="cta"><a class="btn" href="/book/">Book a demo</a></div>
+  <div class="cta"><a class="btn" href="/book/">Book a call</a></div>
 </section>
 
 <section id="team">
@@ -374,7 +374,7 @@ a{color:var(--accent)}
   <details class="qa"><summary><h3>Can I run Claude Code agents from my phone?</h3></summary><p>Yes. You chat with Atlas and the team from the iPhone app (or the web board in any browser), approve risky steps with one tap, and watch any agent's screen live. There is no Android app yet.</p></details>
   <details class="qa"><summary><h3>Where do my messages, code and files go?</h3></summary><p>To your machine and nowhere else we run. Shaliach has no cloud of its own. Threads, files and agent workspaces live on the server or Mac we install it on. The agents talk to Anthropic the same way Claude Code always does, under your account. Voice calls are optional and go to OpenAI only if you add your own API key.</p></details>
   <details class="qa"><summary><h3>Does it touch my Claude login? Is this within Anthropic's terms?</h3></summary><p>For always-on or business use, use your own Anthropic API key, under Anthropic's commercial terms. Every agent is the unmodified <code>claude</code> CLI. You can also sign in with Claude's own <code>claude auth login</code>; the CLI keeps and refreshes its login, and Shaliach never stores your Claude token. Nothing is resold or pooled.</p></details>
-  <details class="qa"><summary><h3>What will it cost me?</h3></summary><p>Shaliach is a paid product, for businesses only. Book a demo for a quote. On top of that, the agents use your own Claude plan, exactly like Claude Code sessions you start yourself. Five agents working at once use it about five times as fast as one. Start with one or two agents and watch your usage on the first day. We have not published a "typical cost" because we have not measured one we trust.</p></details>
+  <details class="qa"><summary><h3>What will it cost me?</h3></summary><p>Shaliach is a paid product, for businesses only. Book a call for a quote. On top of that, the agents use your own Claude plan, exactly like Claude Code sessions you start yourself. Five agents working at once use it about five times as fast as one. Start with one or two agents and watch your usage on the first day. We have not published a "typical cost" because we have not measured one we trust.</p></details>
   <details class="qa"><summary><h3>Which platforms work?</h3></summary><p>We install it for you on one of these. Server: Ubuntu 24.04 or Debian 12 (x86_64 or arm64), or macOS. Mac app: macOS 14+, Apple silicon or Intel. iPhone app: yes. Any browser: the web board. <a href="windows/">Windows 10 or 11</a>: yes. There is no Android app yet.</p></details>
   <details class="qa"><summary><h3>What can the agents do on my machine?</h3></summary><p>Anything their Unix user can do. They run Claude Code in bypassPermissions mode so they do not stall on prompts. The approval cards (Allow once / Always / Deny) stop risky steps, but they are a convenience, not a sandbox. On a server with agent desktops on, the service user is in the <code>docker</code> group, which is root-equivalent. So use a VPS that does nothing else. The Mac bridge, which lets agents run jobs on your Mac, is off until you turn it on, logs every job, and can be stopped from the menu bar.</p></details>
   <details class="qa"><summary><h3>What is exposed to the internet, and how is it authenticated?</h3></summary><p>The deck binds <code>127.0.0.1</code> only. On a public server, Caddy passes only <code>/v1</code> and <code>/healthz</code> over HTTPS on 443, and <code>ufw</code> allows only SSH and 443. Every <code>/v1</code> call needs a bearer token, compared in constant time; with no token set, the API refuses everything. Each paired phone or Mac gets its own token, stored only as a hash and revocable. Wrong guesses are rate limited. Want nothing public at all? We can set it up behind an SSH tunnel or Tailscale. Secrets are plain files with <code>0600</code> permissions, not encrypted at rest.</p></details>
@@ -385,11 +385,11 @@ a{color:var(--accent)}
 </section>
 
 <footer>
-  <p>Shaliach is a paid product for businesses. <a href="/book/">Book a demo</a>. Contact: support@shaliach.me.</p>
+  <p>Shaliach is a paid product for businesses. <a href="/book/">Book a call</a>. Contact: support@shaliach.me.</p>
   <p>Independent project, not affiliated with or endorsed by Anthropic. &middot; <a href="videos.html">Videos</a> &middot; <a href="alternatives/">Alternatives</a></p>
 </footer>
 </main>
-<div id="cta-bar"><a class="btn" href="/book/">Book a demo</a></div>
+<div id="cta-bar"><a class="btn" href="/book/">Book a call</a></div>
 <script>
 (function () {
   var reel = document.getElementById('reel'), btn = document.getElementById('reel-pause');
